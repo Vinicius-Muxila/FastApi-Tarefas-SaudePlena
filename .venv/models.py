@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, Float, ForeignKey
 from sqlalchemy.orm import declarative_base
-from sqlalchemy_utils.types import ChoiceType
 
 # cria a conexão com o banco de dados 
 db = create_engine("sqlite:///./meubanco.db")
@@ -30,14 +29,14 @@ class User(Base):
 class Task(Base):
     __tablename__ = "tarefas"
 
-    STATUS_TAREFAS = (
-        ('PENDENTE', 'Pendente'),
-        ('EM_ANDAMENTO', 'Em Andamento'),
-        ('CONCLUIDA', 'Concluída'),
-    )
+    # STATUS_TAREFAS = (
+    #     ('PENDENTE', 'Pendente'),
+    #     ('EM_ANDAMENTO', 'Em Andamento'),
+    #     ('CONCLUIDA', 'Concluída'),
+    # )
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
-    status = Column("status", ChoiceType(choices=STATUS_TAREFAS), default="PENDENTE")
+    status = Column("status", String, default="PENDENTE")
     usuario = Column("usuario", ForeignKey("usuarios.id"))
     nome = Column("Nome", String(100))
     frequencia = Column("frequencia", String(20))
