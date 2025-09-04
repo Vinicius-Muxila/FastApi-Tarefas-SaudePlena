@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, Float, ForeignKey
 from sqlalchemy.orm import declarative_base
+from sqlalchemy_utils.types import ChoiceType
 
 # cria a conexão com o banco de dados 
 db = create_engine("sqlite:///banco.db")
@@ -26,7 +27,30 @@ class User(Base):
         self.ativo = ativo
         self.admin = admin
     
-# tarefas
+class Task(Base):
+    __tablename__ = "tarefas"
+
+    STATUS_TAREFAS = (
+        ('PENDENTE', 'Pendente'),
+        ('EM_ANDAMENTO', 'Em Andamento'),
+        ('CONCLUIDA', 'Concluída'),
+    )
+
+    id = Column("id", Integer, primary_key=True, autoincrement=True)
+    status = Column("status", ChoiceType(choices=STATUS_TAREFAS), default="PENDENTE")
+    usuario = Column("usuario", ForeignKey("usuarios.id"))
+    nome = Column("Nome", String(100))
+    frequencia = Column("frequencia", String(20))
+    periodo = Column("periodo", String(20))
+    descricao = Column("descricao", String(200))
+
+    def __init__(self, status, usuario, nome, frequencia, periodo, descricao):
+        self.status = status
+        self.usuario = usuario
+        self.nome = nome
+        self.frequencia = frequencia
+        self.periodo = periodo
+        self.descricao = descricao
 # descrição das tarefas
 
 # executa a criação dos metadados do seu banco (cria efetivamente o banco de dados)
