@@ -1,6 +1,6 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from models import User, db
-from sqlalchemy.orm import sessionmaker
+from dependencies import pegar_sessao
 
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -12,8 +12,7 @@ async def home():
     return {"message": "você acessou a rota padrão de autenticação", "autenticado": False}
 
 @auth_router.post("/criar_conta")
-async def criar_conta(nome: str, email: str, senha: str):
-    session = sessionmaker(bind=db)()
+async def criar_conta(nome: str, email: str, senha: str, session = Depends(pegar_sessao)):
     User = session.query(User).filter(User=email == email).first()
     if User:
         # ja existe usuario com esse email
