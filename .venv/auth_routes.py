@@ -13,7 +13,8 @@ async def home():
 
 @auth_router.post("/criar_conta")
 async def criar_conta(email: str, senha: str):
-    session = sessionmaker(bind=db)
+    session = sessionmaker(bind=db)()
+    User = session.query(User).filter(User=email == email).first()
     """
     Endpoint para criar uma nova conta de usuário.
     """
