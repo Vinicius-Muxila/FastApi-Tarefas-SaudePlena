@@ -1,15 +1,23 @@
 from fastapi import APIRouter
+from models import User, db
+from sqlalchemy.orm import sessionmaker
 
 auth_router = APIRouter(prefix="/auth", tags=["auth"])
 
-@auth_router.post("/login")
-async def login(username: str, password: str): 
+@auth_router.get("/")
+async def home(): 
     """
-    Simples endpoint de login que verifica se o nome de usuário e a senha são corretos.
+    Essa é a rota padrão de autenticação do nosso sistema.
     """  
-    if username == "admin" and password == "password":
-        return {"message": "Login successful"}
-    return {"message": "Invalid credentials"}
+    return {"message": "você acessou a rota padrão de autenticação", "autenticado": False}
+
+@auth_router.post("/criar_conta")
+async def criar_conta(email: str, senha: str):
+    session = sessionmaker(bind=db)
+    """
+    Endpoint para criar uma nova conta de usuário.
+    """
+    return {"message": "Account created successfully"}
 
 
 
