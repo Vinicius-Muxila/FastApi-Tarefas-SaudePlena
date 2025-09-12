@@ -11,7 +11,6 @@ app = FastAPI()
 
 bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-
 from auth_routes import auth_router
 from tasks_routes import tasks_router
 
