@@ -12,7 +12,7 @@ class UsuarioSchema(BaseModel):
         from_attributes = True
     
 class TarefaSchema(BaseModel):
-    id_usuario: int
+    usuario: int
     nome: str
     frequencia: str
     periodo: str
