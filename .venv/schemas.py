@@ -6,4 +6,17 @@ class UsuarioSchema(BaseModel):
     email: str
     senha: str
     ativo: Optional[bool] 
-    admin: Optional[bool] 
+    admin: Optional[bool]
+
+    class Config:
+        from_attributes = True
+    
+class TarefaSchema(BaseModel):
+    id_usuario: int
+    nome: str
+    frequencia: str
+    periodo: str
+    descricao: Optional[str]
+
+    class Config:
+        from_attributes = True
