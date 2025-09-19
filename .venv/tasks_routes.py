@@ -8,7 +8,7 @@ tasks_router = APIRouter(prefix="/tarefas", tags=["tarefas"])
 
 @tasks_router.get("/tarefas")
 async def mostrar_tarefas():
-    return {"tasks": ["Tarefa 1", "Tarefa 2", "Tarefa 3", "Tarefa 4"]}
+    return {"tasks": ["Tarefa 1", "Tarefa 2", "Tarefa 3"]}
 
 @tasks_router.post("/tarefa")
 async def criar_tarefa(tarefa_schema: TarefaSchema, session: Session = Depends(pegar_sessao)):

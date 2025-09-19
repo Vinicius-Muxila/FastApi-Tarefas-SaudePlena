@@ -2,14 +2,13 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean, Float, F
 from sqlalchemy.orm import declarative_base
 
 # cria a conexão com o banco de dados 
-db = create_engine("sqlite:///./meubanco.db")
+db = create_engine("sqlite:///banco.db")
 
 # cria a base do banco de dados
 Base = declarative_base()
 
-# cria todas as tabelas do banco de dados
-
-class User(Base):
+# cria todas as classes/tabelas do banco de dados
+class Usuario(Base):
     __tablename__ = "usuarios"
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
@@ -26,7 +25,7 @@ class User(Base):
         self.ativo = ativo
         self.admin = admin
     
-class Task(Base):
+class Tarefa(Base):
     __tablename__ = "tarefas"
 
     # STATUS_TAREFAS = (
