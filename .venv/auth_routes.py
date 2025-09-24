@@ -15,12 +15,12 @@ async def home():
     return {"message": "você acessou a rota padrão de autenticação", "autenticado": False}
 
 @auth_router.post("/criar_conta")
-async def criar_conta(email: str, senha: str):
+async def criar_conta(nome: str, email: str, senha: str):
     Session = sessionmaker(bind=db)
     session = Session()
     usuario = session.query(Usuario).filter(Usuario.email == email).first()
     if usuario:
-        raise HTTPException(status_code=400, detail="Já existe um usuário com esse email")
+        return {"mensagem": "já existe um usuário com esse email"}
     else:
         novo_usuario = Usuario(nome, email, senha)
         session.add(novo_usuario)
