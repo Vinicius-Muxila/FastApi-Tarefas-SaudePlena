@@ -18,7 +18,7 @@ async def home():
 async def criar_conta(nome: str, email: str, senha: str, session = Depends(pegar_sessao)):
     usuario = session.query(Usuario).filter(Usuario.email == email).first()
     if usuario:
-        return {"mensagem": "já existe um usuário com esse email"}
+        return {"mensagem": "já existe um usuário com esse email!"}
     else:
         novo_usuario = Usuario(nome, email, senha)
         session.add(novo_usuario)
