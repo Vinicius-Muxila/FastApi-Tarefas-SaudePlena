@@ -21,7 +21,7 @@ async def criar_conta(nome: str, email: str, senha: str, session = Depends(pegar
         return {"mensagem": "já existe um usuário com esse email"}
     else:
         senha_criptografada = bcrypt_context.hash(senha)
-        novo_usuario = Usuario(nome, email, senha)
+        novo_usuario = Usuario(nome, email, senha_criptografada)
         session.add(novo_usuario)
         session.commit()
         return {"mensagem": f"Usuário cadastrado com sucesso! {email}"}
