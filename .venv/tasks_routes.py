@@ -6,6 +6,13 @@ from schemas import TarefaSchema
 
 tasks_router = APIRouter(prefix="/tarefas", tags=["tarefas"])
 
+@tasks_router.get("/")  
+async def home(): 
+    """
+    Essa é a rota padrão de tarefas do nosso sistema.
+    """  
+    return {"message": "você acessou a rota padrão de tarefas"}
+
 @tasks_router.get("/tarefas")
 async def mostrar_tarefas():
     return {"tasks": ["Tarefa 1", "Tarefa 2", "Tarefa 3"]}
