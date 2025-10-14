@@ -17,6 +17,7 @@ class TarefaSchema(BaseModel):
     frequencia: str
     periodo: str
     descricao: Optional[str]
+    status: Optional[str] = "PENDENTE"
 
     class Config:
         from_attributes = True

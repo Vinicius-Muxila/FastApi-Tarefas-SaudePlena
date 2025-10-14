@@ -42,7 +42,7 @@ class Tarefa(Base):
     periodo = Column("periodo", String(20))
     descricao = Column("descricao", String(200))
 
-    def __init__(self, status, usuario, nome, frequencia, periodo, descricao):
+    def __init__(self, status="PENDENTE", usuario, nome, frequencia, periodo, descricao):
         self.status = status
         self.usuario = usuario
         self.nome = nome

@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session  
 from dependencies import pegar_sessao
 from schemas import TarefaSchema
-
+from models import Tarefa
 
 tasks_router = APIRouter(prefix="/tarefas", tags=["tarefas"])
 
@@ -19,7 +19,7 @@ async def mostrar_tarefas():
 
 @tasks_router.post("/tarefa")
 async def criar_tarefa(tarefa_schema: TarefaSchema, session: Session = Depends(pegar_sessao)):
-    nova_tarefa = TarefaSchema(usuario=tarefa_schema.id_usuario, nome=tarefa_schema.nome, frequencia=tarefa_schema.frequencia, periodo=tarefa_schema.periodo, descricao=tarefa_schema.descricao)
+    nova_tarefa = Tarefa(usuario=tarefa_schema.usuario, nome=tarefa_schema.nome, frequencia=tarefa_schema.frequencia, periodo=tarefa_schema.periodo, descricao=tarefa_schema.descricao, status=tarefa_schema.status)
     session.add(nova_tarefa)
     session.commit()
-    return {"mensagem": "tarefa criada com sucesso!"}      
+    return {"mensagem": "Tarefa criada com sucesso!"}      
