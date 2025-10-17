@@ -36,9 +36,12 @@ async def login(login_schema: LoginSchema, session: Session = Depends(pegar_sess
     usuario = session.query(Usuario).filter(Usuario.email == login_schema.email).first()
     if not usuario:
         raise HTTPException(status_code=400, detail="Usuário não encontrado")
-    else:s
+    else:
         access_token = criar_token(usuario.id)
-        return {"access_token": access_token, "token_type": "bearer"}
+        return {
+            "access_token": access_token, 
+            "token_type": "bearer"
+            }
 
 
 
