@@ -35,7 +35,7 @@ async def criar_conta(usuario_schema: UsuarioSchema, session: Session = Depends(
 async def login(login_schema: LoginSchema, session: Session = Depends(pegar_sessao)):
     usuario = session.query(Usuario).filter(Usuario.email == login_schema.email).first()
     if not usuario:
-        raise HTTPException(status_code=400, detail="Usuário não encontrado!")
+        raise HTTPException(status_code=400, detail="Usuário não encontrado")
     else:
         access_token = criar_token(usuario.id)
         return {
