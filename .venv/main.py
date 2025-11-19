@@ -7,9 +7,9 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
-ACESS_TOKEN_EXPIRE_MINUTES = (os.getenv("ACESS_TOKEN_EXPIRE_MINUTES"))
+ACESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACESS_TOKEN_EXPIRE_MINUTES", 30))
 
-app = FastAPI()
+app = FastAPI()  
 
 bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -21,7 +21,7 @@ app.include_router(tasks_router)
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello my friend, this is FastAPI!"}
+    return {"message": "Hello my brother, this is FastAPI!"}
 
 
 # Para executar o servidor, use o comando:
