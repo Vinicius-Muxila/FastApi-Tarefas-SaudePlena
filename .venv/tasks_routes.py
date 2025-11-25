@@ -9,7 +9,7 @@ tasks_router = APIRouter(prefix="/tarefas", tags=["tarefas"])
 @tasks_router.get("/")  
 async def home(): 
     """
-    Essa é a rota padrão de tarefas do nosso sistema.
+    Esta é a rota padrão de tarefas do nosso sistema.
     """  
     return {"message": "você acessou a rota padrão de tarefas"}
 
