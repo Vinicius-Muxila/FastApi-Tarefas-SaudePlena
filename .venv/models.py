@@ -31,7 +31,7 @@ class Tarefa(Base):
     # STATUS_TAREFAS = (
     #     ('PENDENTE', 'Pendente'),
     #     ('EM_ANDAMENTO', 'Em Andamento'),
-    #     ('CONCLUIDA', 'Concluída, muito bem!'),
+    #     ('CONCLUIDA', 'Concluída,'),
     # )
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
