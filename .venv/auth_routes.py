@@ -35,7 +35,7 @@ async def criar_conta(usuario_schema: UsuarioSchema, session: Session = Depends(
     usuario = session.query(Usuario).filter(Usuario.email == usuario_schema.email).first()
     if usuario:
         # ja existe usuario com esse email
-        raise HTTPException(status_code=400, detail="já existe um usuário com esse email")
+        raise HTTPException(status_code=400, detail="já existe usuário com esse email")
     else:
         senha_criptografada = bcrypt_context.hash(usuario_schema.senha)
         novo_usuario = Usuario(usuario_schema.nome, usuario_schema.email, senha_criptografada, usuario_schema.ativo, usuario_schema.admin)
