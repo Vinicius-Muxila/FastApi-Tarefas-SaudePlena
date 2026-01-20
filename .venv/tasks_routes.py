@@ -11,7 +11,7 @@ async def home():
     """
     Essa é a rota padrão de tarefas do nosso sistema.
     """  
-    return {"message": "você acessou a rota padrão de tarefas"}
+    return {"message": "Você acessou a rota padrão de tarefas!"}
 
 @tasks_router.get("/tarefas")
 async def mostrar_tarefas():
