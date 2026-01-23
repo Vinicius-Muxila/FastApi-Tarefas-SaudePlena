@@ -32,7 +32,7 @@ async def home():
     """
     Essa é a rota padrão de autenticação do nosso sistema.
     """  
-    return {"message": "você acessou a rota padrão de autenticação", "autenticado": False}
+    return {"message": "você acessou a rota padrão de autenticação do sistema", "autenticado": False}
 
 @auth_router.post("/criar_conta")
 async def criar_conta(usuario_schema: UsuarioSchema, session: Session = Depends(pegar_sessao)):
