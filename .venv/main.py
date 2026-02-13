@@ -23,7 +23,7 @@ app.include_router(tasks_router)
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello my brother, this is FastAPI!"}
+    return {"message": "Hello my brother, this is FastAPI! Welcome!!"}
 
 
 # Para executar o servidor, use o comando:
